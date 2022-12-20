@@ -1,0 +1,463 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Azure Functions Monitoring Dashboard that indicates eventHub metrics from Azure",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": 10538,
+  "graphTooltip": 0,
+  "id": 4,
+  "iteration": 1667379556168,
+  "links": [
+    {
+      "icon": "doc",
+      "tags": [],
+      "targetBlank": true,
+      "title": "Metrics Definitions",
+      "tooltip": "",
+      "type": "link",
+      "url": "https://learn.microsoft.com/en-in/azure/azure-monitor/essentials/metrics-supported#microsoftwebsites"
+    }
+  ],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "uid": "$Subscription"
+      },
+      "description": "Function execution units shows a combination of execution time and memory usage, which makes it a problematic metric for understanding memory usage",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 1
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "azureMonitor": {
+            "aggregation": "Total",
+            "alias": "",
+            "allowedTimeGrainsMs": [
+              60000,
+              300000,
+              900000,
+              1800000,
+              3600000,
+              21600000,
+              43200000,
+              86400000
+            ],
+            "dimensionFilters": [],
+            "metricName": "FunctionExecutionUnits",
+            "metricNamespace": "microsoft.web/sites",
+            "resourceGroup": "$ResourceGroup",
+            "resourceName": "$ResourceName",
+            "timeGrain": "auto"
+          },
+          "queryType": "Azure Monitor",
+          "refId": "A"
+        }
+      ],
+      "title": "Function Execution Units",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "uid": "$Subscription"
+      },
+      "description": "The working set of the function shows the set of pages in the virtual address space of the process that are currently resident in physical memory",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "azureMonitor": {
+            "aggregation": "Average",
+            "allowedTimeGrainsMs": [
+              60000,
+              300000,
+              900000,
+              1800000,
+              3600000,
+              21600000,
+              43200000,
+              86400000
+            ],
+            "dimensionFilters": [],
+            "metricName": "MemoryWorkingSet",
+            "metricNamespace": "microsoft.web/sites",
+            "resourceGroup": "$ResourceGroup",
+            "resourceName": "$ResourceName",
+            "timeGrain": "auto"
+          },
+          "queryType": "Azure Monitor",
+          "refId": "A"
+        }
+      ],
+      "title": "Working Memory Set",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "uid": "$Subscription"
+      },
+      "description": "This counter shows the number of the function execution.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "azureMonitor": {
+            "aggregation": "Total",
+            "allowedTimeGrainsMs": [
+              60000,
+              300000,
+              900000,
+              1800000,
+              3600000,
+              21600000,
+              43200000,
+              86400000
+            ],
+            "dimensionFilters": [],
+            "metricName": "FunctionExecutionCount",
+            "metricNamespace": "microsoft.web/sites",
+            "resourceGroup": "$ResourceGroup",
+            "resourceName": "$ResourceName",
+            "timeGrain": "auto"
+          },
+          "queryType": "Azure Monitor",
+          "refId": "A"
+        }
+      ],
+      "title": "Function Execution Count",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "1m",
+  "schemaVersion": 35,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+            "current": {
+              "selected": false,
+              "text": "Azure Monitor",
+              "value": "Azure Monitor"
+            },
+            "hide": 0,
+            "includeAll": false,
+            "multi": false,
+            "name": "Subscription",
+            "options": [],
+            "query": "grafana-azure-monitor-datasource",
+            "refresh": 1,
+            "regex": "",
+            "skipUrlSync": false,
+            "type": "datasource"
+          },
+      {
+        "current": {
+          "selected": false,
+          "text": "function-resource-group",
+          "value": "function-resource-group"
+        },
+        "datasource": {
+          "uid": "$Subscription"
+        },
+        "definition": "ResourceGroups()",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Resource Group",
+        "multi": false,
+        "name": "ResourceGroup",
+        "options": [],
+        "query": "ResourceGroups()",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "function-name",
+          "value": "function-name"
+        },
+        "datasource": {
+          "uid": "$Subscription"
+        },
+        "definition": "ResourceNames($ResourceGroup,microsoft.web/sites)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Azure Function Name",
+        "multi": false,
+        "name": "ResourceName",
+        "options": [],
+        "query": "ResourceNames($ResourceGroup,microsoft.web/sites)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Azure Functions",
+  "uid": "F9Rv1adas1",
+  "version": 1,
+  "weekStart": ""
+}
