@@ -1,5 +1,5 @@
 # grafana-dashboards-azure-function
-Dynamic grafana dashboards for azure functions, before import the dashboard, you should define azure as a source of grafana.
+Dynamic grafana dashboards for azure functions to show the metrics from Application Insight, before import the dashboard, you should define azure as a source of grafana.
 
 Here are the links for defining:
 
